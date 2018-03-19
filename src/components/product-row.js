@@ -1,15 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class ProductRow extends Component {
-  render() {
-    const {product} = this.props;
-    const name = product.stocked ? product.name : <span style={{color:'red'}}>{product.name}</span>
+const ProductRow = ({name, price, stocked} ) => {
+    const NAME = stocked ? name : <span style={{color:'red'}}>{name}</span>
     return (
       <tr className="tr-product">
-        <td>{name}</td>
-        <td>{product.price}</td>
+        <td>{NAME}</td>
+        <td>{price}</td>
       </tr>)
-    }   
 }
 
 export default ProductRow

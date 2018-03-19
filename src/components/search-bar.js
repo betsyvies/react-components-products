@@ -1,18 +1,32 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
-class SearchBar extends Component {
-  render() {
+const SearchBar = ({filterText, inStockOnly, setFilterText, setInStockOnly}) => {
     return (
-        <form className = "form">
-          <input type="text" placeholder="Search..." />
-          <p>
-            <input type="checkbox" />
-            {' '}
-            Only show products in stock
-          </p>
-        </form>
-      );
+      <form>
+        <input type="text" placeholder="Search..."
+        value={filterText}
+        onChange={evt => {
+          setFilterText(evt.target.value)
+        }}/>
+        <p>
+          <input type="checkbox"
+          checked={inStockOnly}
+          onChange={evt => {
+            setInStockOnly(evt.target.checked)
+          }}/>
+          {' '}
+          Only show products in stock
+        </p>
+      </form>
+    );
   }
-}
+
+  SearchBar.propTypes = {
+    filterText: PropTypes.string.isRequired,
+    inStockOnly: PropTypes.bool.isRequired,
+    setFilterText: PropTypes.func.isRequired,
+    setInStockOnly: PropTypes.func.isRequired
+  }
 
 export default SearchBar
